@@ -1,0 +1,346 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: OptiFinance
+    network: manta-pacific-sepolia
+    source:
+      address: "0x9F7b08e2365BFf594C4227752741Cb696B9b6E71"
+      abi: OptiFinance
+      startBlock: 21461817
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Deposit
+        - OwnershipTransferred
+        - Paused
+        - Swap
+        - Unpaused
+        - Withdrawal
+      abis:
+        - name: OptiFinance
+          file: ./abis/OptiFinance.json
+      eventHandlers:
+        - event: Deposit(indexed address,indexed address,indexed address,uint256)
+          handler: handleDeposit
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Paused(address)
+          handler: handlePaused
+        - event: Swap(indexed address,indexed address,indexed address,uint256)
+          handler: handleSwap
+        - event: Unpaused(address)
+          handler: handleUnpaused
+        - event: Withdrawal(indexed address,indexed address,indexed address,uint256)
+          handler: handleWithdrawal
+      file: ./src/opti-finance.ts
+  - kind: ethereum
+    name: MockStakingUniswap
+    network: manta-pacific-sepolia
+    source:
+      address: "0xa976c4930e253CE56Ff129404a95F0578345C113"
+      abi: MockStakingUniswap
+      startBlock: 3132154
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - APYUpdated
+        - EmergencyWithdraw
+        - PartialWithdraw
+        - Staked
+        - WithdrawAll
+      abis:
+        - name: MockStakingUniswap
+          file: ./abis/MockStakingUniswap.json
+      eventHandlers:
+        - event: APYUpdated(uint8,uint8)
+          handler: handleAPYUpdated
+        - event: EmergencyWithdraw(indexed address,uint256)
+          handler: handleEmergencyWithdraw
+        - event: PartialWithdraw(indexed address,uint256)
+          handler: handlePartialWithdraw
+        - event: Staked(indexed address,uint256,uint256)
+          handler: handleStaked
+        - event: WithdrawAll(indexed address,uint256)
+          handler: handleWithdrawAll
+      file: ./src/mock-staking-uniswap.ts
+  - kind: ethereum
+    name: MockStakingUSDXMoney
+    network: manta-pacific-sepolia
+    source:
+      address: "0xF50c64a2C422C6809e5BdbcF4Bb5af38D06a033a"
+      abi: MockStakingUniswap
+      startBlock: 3132154
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - APYUpdated
+        - EmergencyWithdraw
+        - PartialWithdraw
+        - Staked
+        - WithdrawAll
+      abis:
+        - name: MockStakingUniswap
+          file: ./abis/MockStakingUniswap.json
+      eventHandlers:
+        - event: APYUpdated(uint8,uint8)
+          handler: handleAPYUpdated
+        - event: EmergencyWithdraw(indexed address,uint256)
+          handler: handleEmergencyWithdraw
+        - event: PartialWithdraw(indexed address,uint256)
+          handler: handlePartialWithdraw
+        - event: Staked(indexed address,uint256,uint256)
+          handler: handleStaked
+        - event: WithdrawAll(indexed address,uint256)
+          handler: handleWithdrawAll
+      file: ./src/mock-staking-uniswap.ts
+  - kind: ethereum
+    name: MockStakingAaveV3
+    network: manta-pacific-sepolia
+    source:
+      address: "0x23218e77D017AD293496976A5ee9Eb3F3F5EF217"
+      abi: MockStakingUniswap
+      startBlock: 3132154
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - APYUpdated
+        - EmergencyWithdraw
+        - PartialWithdraw
+        - Staked
+        - WithdrawAll
+      abis:
+        - name: MockStakingUniswap
+          file: ./abis/MockStakingUniswap.json
+      eventHandlers:
+        - event: APYUpdated(uint8,uint8)
+          handler: handleAPYUpdated
+        - event: EmergencyWithdraw(indexed address,uint256)
+          handler: handleEmergencyWithdraw
+        - event: PartialWithdraw(indexed address,uint256)
+          handler: handlePartialWithdraw
+        - event: Staked(indexed address,uint256,uint256)
+          handler: handleStaked
+        - event: WithdrawAll(indexed address,uint256)
+          handler: handleWithdrawAll
+      file: ./src/mock-staking-uniswap.ts
+  - kind: ethereum
+    name: MockStakingStargateV3
+    network: manta-pacific-sepolia
+    source:
+      address: "0x60e78201ac487E5C382379dc8f9e39a896396728"
+      abi: MockStakingUniswap
+      startBlock: 3132154
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - APYUpdated
+        - EmergencyWithdraw
+        - PartialWithdraw
+        - Staked
+        - WithdrawAll
+      abis:
+        - name: MockStakingUniswap
+          file: ./abis/MockStakingUniswap.json
+      eventHandlers:
+        - event: APYUpdated(uint8,uint8)
+          handler: handleAPYUpdated
+        - event: EmergencyWithdraw(indexed address,uint256)
+          handler: handleEmergencyWithdraw
+        - event: PartialWithdraw(indexed address,uint256)
+          handler: handlePartialWithdraw
+        - event: Staked(indexed address,uint256,uint256)
+          handler: handleStaked
+        - event: WithdrawAll(indexed address,uint256)
+          handler: handleWithdrawAll
+      file: ./src/mock-staking-uniswap.ts
+  - kind: ethereum
+    name: MockStakingCompoundV3
+    network: manta-pacific-sepolia
+    source:
+      address: "0xd39ef51d10FAeE75FE6fe66537F3D8128Ec72dA5"
+      abi: MockStakingUniswap
+      startBlock: 3132154
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - APYUpdated
+        - EmergencyWithdraw
+        - PartialWithdraw
+        - Staked
+        - WithdrawAll
+      abis:
+        - name: MockStakingUniswap
+          file: ./abis/MockStakingUniswap.json
+      eventHandlers:
+        - event: APYUpdated(uint8,uint8)
+          handler: handleAPYUpdated
+        - event: EmergencyWithdraw(indexed address,uint256)
+          handler: handleEmergencyWithdraw
+        - event: PartialWithdraw(indexed address,uint256)
+          handler: handlePartialWithdraw
+        - event: Staked(indexed address,uint256,uint256)
+          handler: handleStaked
+        - event: WithdrawAll(indexed address,uint256)
+          handler: handleWithdrawAll
+      file: ./src/mock-staking-uniswap.ts
+  - kind: ethereum
+    name: MockUNI
+    network: manta-pacific-sepolia
+    source:
+      address: "0x6c8D1fd3AA9F436CBA20E4b6A5aeDb1bf814A732"
+      abi: MockUNI
+      startBlock: 3132153
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - EIP712DomainChanged
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: MockUNI
+          file: ./abis/MockUNI.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: EIP712DomainChanged()
+          handler: handleEIP712DomainChanged
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/mock-uni.ts
+  - kind: ethereum
+    name: MockWETH
+    network: manta-pacific-sepolia
+    source:
+      address: "0x3455b6B22cBD998512286428De8844CBFBcc06C2"
+      abi: MockUNI
+      startBlock: 3132153
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - EIP712DomainChanged
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: MockUNI
+          file: ./abis/MockUNI.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: EIP712DomainChanged()
+          handler: handleEIP712DomainChanged
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/mock-uni.ts
+  - kind: ethereum
+    name: MockUSDC
+    network: manta-pacific-sepolia
+    source:
+      address: "0x94F0Fd09f425Be15C7Bc0575Aa71780A044039e3"
+      abi: MockUNI
+      startBlock: 3132153
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - EIP712DomainChanged
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: MockUNI
+          file: ./abis/MockUNI.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: EIP712DomainChanged()
+          handler: handleEIP712DomainChanged
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/mock-uni.ts
+  - kind: ethereum
+    name: MockDAI
+    network: manta-pacific-sepolia
+    source:
+      address: "0x74A8Ee760959AF0B18307861e92769CfEcC42f9B"
+      abi: MockUNI
+      startBlock: 3132153
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - EIP712DomainChanged
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: MockUNI
+          file: ./abis/MockUNI.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: EIP712DomainChanged()
+          handler: handleEIP712DomainChanged
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/mock-uni.ts
+  - kind: ethereum
+    name: MockUSDT
+    network: manta-pacific-sepolia
+    source:
+      address: "0x7598099fFC36dCC3e96F3aB33f18E86F85ae7E44"
+      abi: MockUNI
+      startBlock: 3132153
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - EIP712DomainChanged
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: MockUNI
+          file: ./abis/MockUNI.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: EIP712DomainChanged()
+          handler: handleEIP712DomainChanged
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/mock-uni.ts
